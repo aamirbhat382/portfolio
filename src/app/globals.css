@@ -31,3 +31,30 @@ body {
     text-wrap: balance;
   }
 }
+/* Custom CSS for smooth scrolling animations */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Scroll to the specified anchor point */
+.scroll-to {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Style the scroll-to link on hover */
+.scroll-to:hover {
+  color: #ffffff; /* Change to your desired hover color */
+}
+
+/* SVG arrow icon for scroll-to link */
+.scroll-to svg {
+  fill: currentColor;
+  height: 24px;
+  width: 24px;
+}
+.map-style {
+  filter: grayscale(1) contrast(1.2) opacity(0.4);
+}
