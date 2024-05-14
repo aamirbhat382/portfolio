@@ -17,7 +17,7 @@ const HeroSection = () => {
 
             <p className="text-lg md:text-xl mb-6 text-gray-700">
          
-              I'm a {" "}
+              I am a {" "}
                 <span className="text-gray-200 font-bold">
                 passionate developer
               </span>{" "}
