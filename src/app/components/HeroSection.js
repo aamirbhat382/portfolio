@@ -1,3 +1,4 @@
+import { headers } from "next/headers";
 import Link from "next/link";
 import React from "react";
 
@@ -50,3 +51,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
