@@ -457,7 +457,7 @@ return (
                     For My Special Someone
                   </p>
                   <p className="text-rose-100 text-sm mt-1">
-                    {profile.name}, you're unforgettable ❤️
+                    {profile.name}, you&aposre unforgettable ❤️
                   </p>
                 </div>
               )}
