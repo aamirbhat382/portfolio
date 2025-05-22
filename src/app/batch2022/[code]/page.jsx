@@ -227,247 +227,494 @@ export default function FarewellPage() {
     }
   };
 
-  if (!profile) {
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-rose-50 to-pink-100 flex items-center justify-center">
-        <div className="text-center p-6 bg-white/90 rounded-xl border border-pink-200 max-w-md">
-          <p className="text-lg text-pink-800">
-            Loading your special farewell...
-          </p>
+if (!profile) {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-rose-50 to-pink-100 flex items-center justify-center">
+      <div className="text-center p-6 bg-white/90 rounded-xl border border-pink-200 max-w-md shadow-lg animate-pulse">
+        <div className="flex justify-center mb-4">
+          <div className="w-12 h-12 rounded-full bg-pink-200 animate-bounce" />
+        </div>
+        <p className="text-lg text-pink-800 font-medium">
+          Preparing your personalized farewell...
+        </p>
+        <p className="mt-2 text-sm text-pink-600">Just a moment while we add the magic ✨</p>
+      </div>
+    </div>
+  );
+}
+
+return (
+  <div className="min-h-screen bg-gradient-to-br from-rose-50 to-pink-100 flex flex-col items-center justify-start p-4 relative overflow-hidden">
+    <Head>
+      <title>A Gift For {profile.name}</title>
+      {profile.isCrush && <meta name="theme-color" content="#fdf2f8" />}
+    </Head>
+
+    {/* Floating decorative elements */}
+    <div className="fixed inset-0 pointer-events-none overflow-hidden">
+      {[...Array(15)].map((_, i) => (
+        <div
+          key={i}
+          className="absolute opacity-10"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            width: `${Math.random() * 300 + 100}px`,
+            height: `${Math.random() * 300 + 100}px`,
+            borderRadius: '50%',
+            background: profile.isCrush 
+              ? 'radial-gradient(circle, rgba(244,63,94,0.3) 0%, rgba(255,255,255,0) 70%)'
+              : 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(255,255,255,0) 70%)',
+            transform: `scale(${Math.random() * 0.5 + 0.5})`,
+          }}
+        />
+      ))}
+    </div>
+
+    {/* Hidden audio element */}
+    <audio ref={audioRef} src={profile.music} loop />
+
+    {/* Farewell Heading */}
+    <div className="text-center px-4 py-8 z-10">
+      <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-rose-500 drop-shadow-lg mb-2 animate-float-in">
+        💖 College Farewell Memories 💖
+      </h1>
+      <p className="mt-3 text-lg md:text-xl text-gray-600 font-medium">
+        A digital surprise crafted with love, laughter & a few tears...
+      </p>
+      <p className="text-sm text-gray-500 mt-4">
+        BCA Batch 2022–2025 • Government Degree College, Handwara
+      </p>
+      <div className="mt-6 flex justify-center">
+        <div className="animate-bounce bg-white/80 p-2 rounded-full shadow-md">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 text-pink-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 14l-7 7m0 0l-7-7m7 7V3"
+            />
+          </svg>
         </div>
       </div>
-    );
-  }
+    </div>
 
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50 to-pink-100 flex items-center justify-center p-4">
-      <Head>
-        <title>A Gift For {profile.name}</title>
-        {profile.isCrush && <meta name="theme-color" content="#fdf2f8" />}
-      </Head>
-
-      {/* Hidden audio element */}
-      <audio ref={audioRef} src={profile.music} loop />
-
-      {/* Farewell Heading - OUTSIDE the gift box */}
-      <div className="text-center px-4 py-8">
-        <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-rose-500 drop-shadow-lg">
-          💖 College Farewell Memories 💖
-        </h1>
-        <p className="mt-3 text-lg md:text-xl text-gray-600">
-          A digital surprise crafted with love, laughter & a few tears...
-        </p>
-        <p className="text-sm text-gray-400 italic">
-          BCA Batch 2022–2025 • Government Degree College, Handwara
-        </p>
-        <p className="text-sm text-gray-400 italic mt-1">
-          (Click your gift box to reveal your personal farewell 🎁)
-        </p>
-      </div>
-
+    {/* Gift Box Container */}
+    <div className="flex-1 flex flex-col items-center justify-center w-full relative z-10">
       {/* Gift Box */}
       <div
         ref={giftBoxRef}
         className={`
-    relative w-64 h-64 sm:w-56 sm:h-56 mx-auto
-    cursor-pointer transition-all duration-700 ease-in-out
-    ${
-      isOpen
-        ? "scale-0 rotate-6"
-        : "scale-100 hover:scale-105 hover:-translate-y-1"
-    }
-  `}
+          relative w-72 h-72 sm:w-64 sm:h-64 mx-auto
+          cursor-pointer transition-all duration-700 ease-in-out
+          ${isOpen ? "scale-0 rotate-12" : "scale-100 hover:scale-110"}
+          transform-gpu
+        `}
         onClick={handleOpenGift}
       >
         {/* Gift box lid */}
         <div
           className={`
-      absolute top-0 left-0 w-full h-16 
-      ${profile.isCrush ? "bg-rose-600" : "bg-blue-600"}
-      rounded-t-xl shadow-xl transform origin-bottom transition-all duration-500 
-      ${isOpen ? "rotate-[120deg]" : "rotate-0"}
-    `}
+            absolute top-0 left-0 w-full h-20 
+            ${profile.isCrush ? "bg-rose-600" : "bg-blue-600"}
+            rounded-t-xl shadow-2xl transform origin-bottom transition-all duration-500 
+            ${isOpen ? "rotate-[60deg] -translate-y-4" : "rotate-0"}
+            group-hover:shadow-lg
+          `}
           style={{ zIndex: 2 }}
         >
-          <div className="absolute bottom-0 left-1/2 w-8 h-8 bg-rose-700 rounded-full transform -translate-x-1/2 translate-y-1/2 shadow" />
+          <div className="absolute bottom-0 left-1/2 w-10 h-10 bg-white/20 rounded-full transform -translate-x-1/2 translate-y-1/2 shadow-inner flex items-center justify-center">
+            <div className="w-6 h-6 bg-white/30 rounded-full" />
+          </div>
         </div>
 
         {/* Gift box body */}
         <div
           className={`
-      absolute top-8 left-0 w-full h-48 
-      ${profile.isCrush ? "bg-rose-500" : "bg-blue-500"}
-      rounded-b-xl shadow-md flex items-center justify-center
-      transition-all duration-500 ease-in-out
-    `}
+            absolute top-20 left-0 w-full h-52 
+            ${profile.isCrush ? "bg-rose-500" : "bg-blue-500"}
+            rounded-b-xl shadow-lg flex items-center justify-center
+            transition-all duration-500 ease-in-out
+            group-hover:shadow-xl
+          `}
           style={{ zIndex: 1 }}
         >
-          <div className="text-white text-center px-2">
-            <p className="text-2xl font-semibold mb-2 tracking-wide">
-              For {profile.name}
+          <div className="text-white text-center px-4 transform transition-transform duration-300 group-hover:scale-105">
+            <p className="text-3xl font-bold mb-3 tracking-wide animate-pulse-slow">
+              {profile.emoji}
             </p>
-            <p className="text-sm opacity-90 italic">
-              Click to open your gift 🎁
+            <p className="text-xl font-semibold mb-1">For {profile.name}</p>
+            <p className="text-sm opacity-90 italic mt-2">
+              Click to open your special gift
             </p>
           </div>
         </div>
 
         {/* Ribbon */}
         <div
-          className="absolute top-8 left-0 w-full h-1 bg-rose-300 shadow-sm"
+          className="absolute top-20 left-0 w-full h-1.5 bg-white/30 shadow-sm"
           style={{ zIndex: 3 }}
         />
         <div
-          className="absolute top-8 left-1/2 w-1 h-48 bg-rose-300 transform -translate-x-1/2 shadow-sm"
+          className="absolute top-20 left-1/2 w-1.5 h-52 bg-white/30 transform -translate-x-1/2 shadow-sm"
           style={{ zIndex: 3 }}
         />
+        
+        {/* Shine effect */}
+        <div
+          className="absolute inset-0 rounded-xl overflow-hidden"
+          style={{ zIndex: 4 }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
       </div>
 
-      {/* Content Reveal */}
-      {showContent && (
-        <div
-          className={`fixed inset-0 z-10 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm 
-      transition-opacity duration-700 ${
-        showContent ? "opacity-100" : "opacity-0"
-      }`}
-        >
-          <div
-            className={`
-        relative w-full max-w-md rounded-3xl overflow-hidden shadow-2xl border
-        ${
-          profile.isCrush
-            ? "bg-gradient-to-br from-rose-50 to-pink-100 border-rose-200"
-            : "bg-gradient-to-br from-blue-50 to-cyan-100 border-blue-200"
-        }
-      `}
-          >
-            {/* Close Button */}
-            <button
-              onClick={() => setShowContent(false)}
-              className="absolute top-3 right-3 text-rose-600 bg-white/90 hover:bg-white p-2 rounded-full z-20 shadow-md"
-            >
-              ✕
-            </button>
-
-            {/* Crush-specific Photo */}
-            {profile.isCrush && profile.photos && (
-              <div className="h-48 bg-rose-200 relative overflow-hidden rounded-t-3xl">
-                <img
-                  src={profile.photos[0]}
-                  alt={`Special memory with ${profile.name}`}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/40 to-transparent p-3">
-                  <p className="text-white font-semibold text-sm">
-                    For My Special Someone
-                  </p>
-                </div>
-              </div>
-            )}
-
-            {/* Message Content */}
-            <div className="p-6">
-              <h1
-                className={`text-3xl font-bold text-center mb-3 leading-snug tracking-tight 
-            ${profile.isCrush ? "text-rose-600" : "text-blue-600"}`}
-              >
-                {profile.name} {profile.emoji}
-              </h1>
-
-              <div
-                className={`
-            p-4 rounded-xl whitespace-pre-line text-sm tracking-wide leading-relaxed shadow-sm
-            ${
-              profile.isCrush
-                ? "bg-rose-50/80 text-rose-900"
-                : "bg-blue-50/80 text-gray-800"
-            }
-          `}
-              >
-                {profile.message}
-              </div>
-
-              {/* Music Controls */}
-              <div className="flex justify-center mt-5">
-                <button
-                  onClick={() =>
-                    audioRef.current?.paused
-                      ? audioRef.current.play()
-                      : audioRef.current.pause()
-                  }
-                  className={`px-5 py-2.5 text-sm rounded-full font-medium flex items-center shadow-md transition-all
-              ${
-                profile.isCrush
-                  ? "bg-rose-500 hover:bg-rose-600"
-                  : "bg-blue-500 hover:bg-blue-600"
-              } text-white`}
-                >
-                  {audioRef.current?.paused ? (
-                    <>
-                      <span className="mr-2">▶</span> Play Music
-                    </>
-                  ) : (
-                    <>
-                      <span className="mr-2">❚❚</span> Pause
-                    </>
-                  )}
-                </button>
-              </div>
-
-              {/* Footer Signature */}
-              <div className="mt-6 text-center text-sm text-gray-500">
-                — A surprise from{" "}
-                <span className="font-semibold text-blue-600">
-                  Aamir Hussain
-                </span>{" "}
-                💌 <br />
-                <span className="text-xs text-gray-400 italic">
-                  (P.S. I even added your background song... just for you 🎵)
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Floating hearts for crush */}
-      {profile.isCrush && showContent && (
-        <div className="fixed inset-0 pointer-events-none">
-          {[...Array(20)].map((_, i) => (
+      {/* Confetti particles */}
+      {isOpen && (
+        <div className="fixed inset-0 pointer-events-none z-0">
+          {[...Array(150)].map((_, i) => (
             <div
               key={i}
-              className="absolute text-rose-400 animate-float"
+              className="absolute rounded-full animate-confetti"
               style={{
                 left: `${Math.random() * 100}%`,
-                fontSize: `${Math.random() * 20 + 10}px`,
-                animationDelay: `${Math.random() * 5}s`,
-                animationDuration: `${Math.random() * 4 + 6}s`,
+                top: `-10px`,
+                width: `${Math.random() * 8 + 4}px`,
+                height: `${Math.random() * 8 + 4}px`,
+                backgroundColor: profile.isCrush
+                  ? `hsl(${Math.random() * 60 + 330}, 100%, 70%)`
+                  : `hsl(${Math.random() * 60 + 200}, 100%, 70%)`,
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: `${Math.random() * 3 + 2}s`,
+                opacity: 0.8,
               }}
-            >
-              ❤️
-            </div>
+            />
           ))}
         </div>
       )}
-
-      <style jsx global>{`
-        @keyframes float {
-          0% {
-            transform: translateY(100vh) rotate(0deg);
-            opacity: 0;
-          }
-          10% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-20vh) rotate(360deg);
-            opacity: 0;
-          }
-        }
-        .animate-float {
-          animation: float linear forwards;
-        }
-      `}</style>
     </div>
-  );
+
+    {/* Content Reveal */}
+    {showContent && (
+      <div
+        className={`fixed inset-0 z-20 flex items-center justify-center p-4 bg-black/30 backdrop-blur-sm 
+          transition-all duration-500 ${showContent ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+        onClick={() => setShowContent(false)}
+      >
+        <div
+          className={`
+            relative w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl border-2
+            ${profile.isCrush
+              ? "bg-gradient-to-br from-rose-50 to-pink-100 border-rose-300"
+              : "bg-gradient-to-br from-blue-50 to-cyan-100 border-blue-300"
+            }
+            transform transition-all duration-500
+            ${showContent ? "scale-100 opacity-100" : "scale-95 opacity-0"}
+            animate-content-pop
+          `}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {/* Close Button */}
+          <button
+            onClick={() => setShowContent(false)}
+            className={`absolute top-4 right-4 p-2 rounded-full z-20 shadow-md transition-all
+              ${profile.isCrush ? "bg-rose-100 hover:bg-rose-200 text-rose-700" : "bg-blue-100 hover:bg-blue-200 text-blue-700"}
+              hover:scale-110
+            `}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </button>
+
+          {/* Photo Section */}
+          {profile.photos && (
+            <div className="h-60 bg-gray-200 relative overflow-hidden rounded-t-2xl">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent z-10" />
+              <img
+                src={profile.photos[0]}
+                alt={`Special memory with ${profile.name}`}
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+              {profile.isCrush && (
+                <div className="absolute bottom-0 left-0 right-0 z-20 p-4 text-center">
+                  <p className="text-white font-bold text-xl drop-shadow-lg">
+                    For My Special Someone
+                  </p>
+                  <p className="text-rose-100 text-sm mt-1">
+                    {profile.name}, you&aposre unforgettable ❤️
+                  </p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Message Content */}
+          <div className="p-6 sm:p-8">
+            <div className="text-center mb-6">
+              <h1
+                className={`text-4xl font-extrabold mb-2 leading-tight tracking-tight
+                  ${profile.isCrush ? "text-rose-600" : "text-blue-600"}
+                  animate-text-focus
+                `}
+              >
+                {profile.name} {profile.emoji}
+              </h1>
+              <div
+                className={`w-20 h-1 mx-auto rounded-full mb-4 ${
+                  profile.isCrush ? "bg-rose-300" : "bg-blue-300"
+                }`}
+              />
+              <p className="text-gray-500 italic">
+                A message from your college friend...
+              </p>
+            </div>
+
+            <div
+              className={`
+                p-6 rounded-xl whitespace-pre-line text-base leading-relaxed shadow-inner
+                ${profile.isCrush
+                  ? "bg-rose-50/90 text-rose-900 border border-rose-200"
+                  : "bg-blue-50/90 text-gray-800 border border-blue-200"
+                }
+                font-medium
+                transition-all duration-300 hover:shadow-md
+              `}
+            >
+              {profile.message}
+            </div>
+
+            {/* Interactive Elements */}
+            <div className="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+              {/* Music Controls */}
+              <button
+                onClick={() =>
+                  audioRef.current?.paused
+                    ? audioRef.current.play()
+                    : audioRef.current?.pause()
+                }
+                className={`px-6 py-3 rounded-full font-medium flex items-center shadow-lg transition-all
+                  ${profile.isCrush
+                    ? "bg-rose-500 hover:bg-rose-600 text-white"
+                    : "bg-blue-500 hover:bg-blue-600 text-white"
+                  }
+                  hover:shadow-xl transform hover:-translate-y-0.5
+                  flex-1 max-w-xs justify-center
+                `}
+              >
+                {audioRef.current?.paused ? (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 mr-2"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Play Your Song
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 mr-2"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    Pause Music
+                  </>
+                )}
+              </button>
+
+              {/* Download Memory Button */}
+              <button
+                onClick={() => {
+                  // Add download functionality
+                }}
+                className={`px-6 py-3 rounded-full font-medium flex items-center shadow-lg transition-all
+                  bg-white border ${
+                    profile.isCrush
+                      ? "border-rose-300 text-rose-600 hover:bg-rose-50"
+                      : "border-blue-300 text-blue-600 hover:bg-blue-50"
+                  }
+                  hover:shadow-xl transform hover:-translate-y-0.5
+                  flex-1 max-w-xs justify-center
+                `}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 mr-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+                Save This Memory
+              </button>
+            </div>
+
+            {/* Footer Signature */}
+            <div className="mt-8 text-center">
+              <div
+                className={`inline-flex items-center px-4 py-2 rounded-full ${
+                  profile.isCrush ? "bg-rose-100" : "bg-blue-100"
+                }`}
+              >
+                <p className="text-sm text-gray-600">
+                  Created with love by{" "}
+                  <span className="font-bold text-blue-600">Aamir Hussain</span>
+                </p>
+                <span className="ml-2 text-pink-500">❤️</span>
+              </div>
+              <p className="text-xs text-gray-400 mt-2 italic">
+                P.S. I handpicked this song just for you... hope it brings back memories 🎶
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* Floating hearts for crush */}
+    {profile.isCrush && showContent && (
+      <div className="fixed inset-0 pointer-events-none z-10">
+        {[...Array(30)].map((_, i) => (
+          <div
+            key={i}
+            className="absolute text-rose-400 animate-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              fontSize: `${Math.random() * 24 + 12}px`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${Math.random() * 4 + 6}s`,
+              filter: `blur(${Math.random() * 2}px)`,
+              opacity: Math.random() * 0.5 + 0.5,
+            }}
+          >
+            {['❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤'][Math.floor(Math.random() * 8)]}
+          </div>
+        ))}
+      </div>
+    )}
+
+    <style jsx global>{`
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(0deg) scale(0.5);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-20vh) rotate(360deg) scale(1.2);
+          opacity: 0;
+        }
+      }
+      @keyframes confetti {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(100vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      @keyframes float-in {
+        0% {
+          transform: translateY(-20px);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      @keyframes pulse-slow {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+      }
+      @keyframes text-focus {
+        0% {
+          letter-spacing: -0.5px;
+          opacity: 0.8;
+        }
+        50% {
+          letter-spacing: 1px;
+          opacity: 1;
+        }
+        100% {
+          letter-spacing: -0.5px;
+          opacity: 0.8;
+        }
+      }
+      @keyframes content-pop {
+        0% {
+          transform: scale(0.95);
+          opacity: 0;
+        }
+        50% {
+          transform: scale(1.02);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .animate-float {
+        animation: float linear forwards;
+      }
+      .animate-confetti {
+        animation: confetti linear forwards;
+      }
+      .animate-float-in {
+        animation: float-in 0.6s ease-out forwards;
+      }
+      .animate-pulse-slow {
+        animation: pulse-slow 2s infinite;
+      }
+      .animate-text-focus {
+        animation: text-focus 3s ease-in-out infinite;
+      }
+      .animate-content-pop {
+        animation: content-pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+    `}</style>
+  </div>
+);
 }
