@@ -196,6 +196,48 @@ Kabhi mere feelings ko bhi debug kar lena... 💌`,
       "https://pagalfree.com/musics/128-Hawayein (Film Version) - Jab Harry Met Sejal 128 Kbps.mp3",
     // photos: ["/team/sabiya.jpg", "/team/sabiya.jpg"],
   },
+  sba181: {
+  name: "Sabiya",
+  message: `Hi Sabiya 👋
+
+College ke dino mein tumhara coding ke waqt ka confusion aur woh funny expressions — sab yaadgar rahenge 😄  
+Class mein jab bhi tum kisi se poochti thi "yeh kaise karte hain?" — lagta tha ek mini viva chal raha ho! 😅
+
+Aage ke safar ke liye best wishes!  
+Hamesha haste rehna, aur zindagi mein full attendance rakhna 😜
+
+Good luck for the future! 🌟`,
+  
+  emoji: "😄",
+  isCrush: false,
+  bgColor: "from-yellow-100 to-emerald-100",
+  cardColor: "bg-white/95 border-2 border-yellow-300",
+  music:
+    "https://pagalfree.com/musics/128-Senorita - Zindagi Na Milegi Dobara 128 Kbps.mp3",
+},
+faizanPlt: {
+  name: "Faizan",
+  message: `Faizan bhai! 🤝
+
+Tera subject Political Science tha,  
+par BCA walon ke liye tu Love Science ka icon tha! 💘  
+Kya branch mila tha tujhe — sabse zyada crush wali girls wahan hi thi! 😅
+
+Tu toh class attend karta tha,  
+aur hum tujhe silently jealous hote dekhte the! 😂
+
+Bas bhai, tujhe farewell nahi — trophy deni chahiye for being in the most *"blessed"* branch! 🏆  
+Zindagi mein aise hi hero bane rehna! 💪`,
+  
+  emoji: "🔥",
+  isCrush: false,
+  bgColor: "from-yellow-100 to-orange-100",
+  cardColor: "bg-white/95 border-2 border-yellow-300",
+  music:
+    "https://pagalfree.com/musics/128-Swag Se Swagat - Tiger Zinda Hai 128 Kbps.mp3",
+}
+
+
 };
 
 export default function FarewellPage() {
