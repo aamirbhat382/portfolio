@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
-import ProjectsSection from "./components/ProjectsSection";x
+import ProjectsSection from "./components/ProjectsSection";
 import ContactSection from "./components/ContactSection";
 
 const projects = [
