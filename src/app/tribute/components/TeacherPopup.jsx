@@ -60,7 +60,7 @@ export default function TeacherPopup({ teacher, index, total }) {
         <div className="text-center max-h-[40vh] px-4 overflow-y-hidden">
           <h2 className="text-3xl md:text-4xl font-bold mb-2 text-gray-300">{teacher.name}</h2>
           <p className="text-xl text-indigo-300 mb-6">{teacher.subject}</p>
-          <p className="text-lg italic max-w-prose text-green-600 mx-auto">"{teacher.message}"</p>
+          <p className="text-lg italic max-w-prose text-green-600 mx-auto">{teacher.message}</p>
         </div>
 
         {/* Progress indicator */}
