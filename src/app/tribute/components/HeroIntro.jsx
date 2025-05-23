@@ -89,7 +89,7 @@ export default function HeroIntro() {
           >
             <Heart className="w-5 h-5 text-pink-400 animate-pulse" />
             <p className="text-sm md:text-base text-indigo-200 italic">
-              "For every lesson, every patience, every belief you gave us..."
+              &quotFor every lesson, every patience, every belief you gave us...&quot
             </p>
             <Heart className="w-5 h-5 text-pink-400 animate-pulse" />
           </motion.div>
