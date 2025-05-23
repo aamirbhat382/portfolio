@@ -33,7 +33,7 @@ export default function FinalGoodbye() {
           className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10"
         >
           <p className="text-indigo-100 mb-4">
-            &quotThe memories we've created will last forever&quot
+            &quotThe memories we&aposve created will last forever&quot
           </p>
           <div className="flex justify-center items-center gap-2 text-sm text-indigo-300">
             <Heart className="w-4 h-4 text-pink-400" />
