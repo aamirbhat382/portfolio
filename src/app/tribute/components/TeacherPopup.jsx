@@ -13,8 +13,7 @@ export default function TeacherPopup({ teacher, index, total }) {
       
       if (teacher.audio) {
         audioRef.current.src = teacher.audio;
-        // Note: Most browsers block autoplay unless it's triggered by user interaction
-        // We'll attempt to play but catch any errors
+
         audioRef.current.play().catch(error => {
           console.log("Autoplay was prevented:", error);
           // You might want to show a play button instead
