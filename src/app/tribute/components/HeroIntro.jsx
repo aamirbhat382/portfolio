@@ -77,7 +77,7 @@ export default function HeroIntro() {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.8 }}
           >
-            On this bittersweet Monday, May 25th 2025, our BCA 2022 batch gathers
+            On this bittersweet Monday, May 26th 2025, our BCA 2022 batch gathers
             one last time to express what words can barely contain...
           </motion.p>
           
@@ -89,7 +89,7 @@ export default function HeroIntro() {
           >
             <Heart className="w-5 h-5 text-pink-400 animate-pulse" />
             <p className="text-sm md:text-base text-indigo-200 italic">
-              &quotFor every lesson, every patience, every belief you gave us...&quot
+              &quot For every lesson, every patience, every belief you gave us... &quot
             </p>
             <Heart className="w-5 h-5 text-pink-400 animate-pulse" />
           </motion.div>
