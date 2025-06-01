@@ -176,7 +176,7 @@ Numbers will miss you. Hum bhi.`,
     music:
       "https://pagalfree.com/musics/128-Jashn E Bahaaraa - Jodhaa Akbar 128 Kbps.mp3",
   },
-  sbya143: {
+  sbya1431: {
     name: "Sabiya",
     message: `Dear Sabiya, 💖
 
